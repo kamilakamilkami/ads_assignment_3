@@ -6,6 +6,7 @@ public class TestClass {
     }
 
     public int hashcode(){
+
         int hash = 0;
         for (int i = 0; i < value.length(); i++) {
             hash = 31 * hash + value.charAt(i);
