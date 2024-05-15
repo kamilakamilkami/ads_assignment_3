@@ -1,5 +1,3 @@
-package MyHashTable;
-
 import java.util.NoSuchElementException;
 
 public class MyHashTable<K, V> {

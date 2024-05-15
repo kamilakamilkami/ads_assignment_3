@@ -1,61 +1,18 @@
-package BinarySearchTree;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Stack;
 
 public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Iterable<Key> {
-    private class TreeNode<Key extends Comparable<Key>, Value> {
-        private Key key;
-        private Value value;
-        private TreeNode<Key, Value> left, right;
 
-        public TreeNode(Key key, Value value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public Key getKey() {
-            return key;
-        }
-
-        public void setKey(Key key) {
-            this.key = key;
-        }
-
-        public Value getValue() {
-            return value;
-        }
-
-        public void setValue(Value value) {
-            this.value = value;
-        }
-
-        public TreeNode<Key, Value> getLeft() {
-            return left;
-        }
-
-        public void setLeft(TreeNode<Key, Value> left) {
-            this.left = left;
-        }
-
-        public TreeNode<Key, Value> getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode<Key, Value> right) {
-            this.right = right;
-        }
-    }
-
-    private TreeNode<Key, Value> root;
+    private Node<Key, Value> root;
     private int size;
 
     public void insert(Key key, Value value) {
-        TreeNode<Key, Value> newNode = new TreeNode<>(key, value);
+        Node<Key, Value> newNode = new Node<>(key, value);
         if (root == null) {
             root = newNode;
         } else {
-            TreeNode<Key, Value> current = root;
+            Node<Key, Value> current = root;
             if (current.getKey().equals(newNode.getKey())) {
                 newNode.setLeft(current.getLeft());
                 newNode.setRight(current.getRight());
@@ -85,7 +42,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
     }
 
     public Value retrieve(Key key) {
-        TreeNode<Key, Value> current = root;
+        Node<Key, Value> current = root;
         while (current != null && !current.getKey().equals(key)) {
             if (current.getKey().compareTo(key) > 0) {
                 current = current.getLeft();
@@ -104,7 +61,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
         size--;
     }
 
-    private TreeNode<Key, Value> removeNode(TreeNode<Key, Value> node, Key key) {
+    private Node<Key, Value> removeNode(Node<Key, Value> node, Key key) {
         if (node == null)
             return null;
 
@@ -118,7 +75,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
             else if (node.getRight() == null)
                 return node.getLeft();
 
-            TreeNode<Key, Value> minNode = findMinimum(node.getRight());
+            Node<Key, Value> minNode = findMinimum(node.getRight());
             node.setKey(minNode.getKey());
             node.setValue(minNode.getValue());
             node.setRight(removeNode(node.getRight(), node.getKey()));
@@ -127,7 +84,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
         return node;
     }
 
-    private TreeNode<Key, Value> findMinimum(TreeNode<Key, Value> node) {
+    private Node<Key, Value> findMinimum(Node<Key, Value> node) {
         while (node.getLeft() != null) {
             node = node.getLeft();
         }
@@ -135,10 +92,84 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
     }
 
     public Iterator<Key> iterator() {
-        return new <>(root);
+        return new MyIterator<>(root);
     }
 
     public int getSize() {
         return size;
+    }
+
+    private static class MyIterator<K extends Comparable<K>, V> implements Iterator<K> {
+        private Stack<Node<K, V>> stack;
+
+        public MyIterator(Node<K, V> root) {
+            stack = new Stack<>();
+            pushNodes(root);
+        }
+
+        private void pushNodes(Node<K, V> node) {
+            while (node != null) {
+                stack.push(node);
+                node = node.getLeft();
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public K next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No elements in the tree");
+            }
+            Node<K, V> current = stack.pop();
+            pushNodes(current.getRight());
+            return current.getKey();
+        }
+    }
+
+    private static class Node<Key extends Comparable<Key>, Value> {
+        private Key key;
+        private Value value;
+        private Node<Key, Value> left, right;
+
+        public Node(Key key, Value value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public Key getKey() {
+            return key;
+        }
+
+        public void setKey(Key key) {
+            this.key = key;
+        }
+
+        public Value getValue() {
+            return value;
+        }
+
+        public void setValue(Value value) {
+            this.value = value;
+        }
+
+        public Node<Key, Value> getLeft() {
+            return left;
+        }
+
+        public void setLeft(Node<Key, Value> left) {
+            this.left = left;
+        }
+
+        public Node<Key, Value> getRight() {
+            return right;
+        }
+
+        public void setRight(Node<Key, Value> right) {
+            this.right = right;
+        }
     }
 }
