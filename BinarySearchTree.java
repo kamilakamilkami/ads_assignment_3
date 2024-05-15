@@ -5,6 +5,7 @@ import java.util.Stack;
 public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
     private Node<Key, Value> root;
+
     private int size;
 
     public void insert(Key key, Value value) {
