@@ -16,18 +16,22 @@ public class MyHashTable<K, V> {
         }
 
         public V getValue() {
+
             return value;
         }
 
         public void setValue(V value) {
+
             this.value = value;
         }
 
         public HashNode<K, V> getNext() {
+
             return next;
         }
 
         public void setNext(HashNode<K, V> next) {
+
             this.next = next;
         }
     }
@@ -38,6 +42,7 @@ public class MyHashTable<K, V> {
     private double loadFactor = 0.6;
 
     public MyHashTable() {
+
         bucketArray = new HashNode[capacity];
     }
 
@@ -147,4 +152,18 @@ public class MyHashTable<K, V> {
         }
         return false;
     }
+
+    public void printBuckets(){
+        for(int i=0;i<bucketArray.length;i++){
+            int bucketsize = 0;
+            HashNode<K, V> head = bucketArray[i];
+            while (head!=null) {
+                bucketsize++;
+                head = head.getNext();
+            }
+            System.out.println("Bucket " + i + " Size " + bucketsize);
+        }
+    }
 }
+
+
