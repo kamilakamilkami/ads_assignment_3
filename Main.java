@@ -6,11 +6,11 @@ public class Main {
         BinarySearchTree<Integer, Character> binarySearchTree = new BinarySearchTree<Integer, Character>();
         String values = "ABCDEFGHIJK";
         for(int i=0;i<10;i++){
-            binarySearchTree.insert(i,values.charAt(i));
+            binarySearchTree.put(i,values.charAt(i));
         }
 
         for (Integer k : binarySearchTree) {
-            System.out.println("Key: " + k + ", Value: " + binarySearchTree.retrieve(k));
+            System.out.println("Key: " + k + ", Value: " + binarySearchTree.get(k));
         }
         // Hash Table
         MyHashTable<TestClass, Book> hashTable = new MyHashTable<>();

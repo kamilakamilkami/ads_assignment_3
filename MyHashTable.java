@@ -37,23 +37,23 @@ public class MyHashTable<K, V> {
     }
 
     private HashNode<K, V>[] bucketArray;
-    private int capacity = 11;
+    private int M = 11;
     private int size;
     private double loadFactor = 0.6;
 
     public MyHashTable() {
 
-        bucketArray = new HashNode[capacity];
+        bucketArray = new HashNode[M];
     }
 
     public MyHashTable(int capacity) {
-        this.capacity = capacity;
-        bucketArray = new HashNode[this.capacity];
+        this.M= capacity;
+        bucketArray = new HashNode[this.M];
     }
 
     private int hash(K key) {
         int hashValue = Math.abs(key.hashCode());
-        return hashValue % capacity;
+        return hashValue % M ;
     }
 
     public void insert(K key, V value) {
@@ -74,13 +74,13 @@ public class MyHashTable<K, V> {
             bucketArray[index] = newNode;
         }
         size++;
-        if ((double) size / capacity >= loadFactor) {
+        if ((double) size / M  >= loadFactor) {
             resize();
         }
     }
 
     private void resize() {
-        int newCapacity = capacity * 2;
+        int newCapacity = M  * 2;
         HashNode<K, V>[] newBucketArray = new HashNode[newCapacity];
         for (int i = 0; i < bucketArray.length; i++) {
             HashNode<K, V> current = bucketArray[i];
@@ -93,7 +93,7 @@ public class MyHashTable<K, V> {
             }
         }
         bucketArray = newBucketArray;
-        capacity = newCapacity;
+        M  = newCapacity;
     }
 
     public V retrieve(K key) {

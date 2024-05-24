@@ -8,7 +8,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
 
     private int size;
 
-    public void insert(Key key, Value value) {
+    public void put(Key key, Value value) {
         Node<Key, Value> newNode = new Node<>(key, value);
         if (root == null) {
             root = newNode;
@@ -42,7 +42,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
         size++;
     }
 
-    public Value retrieve(Key key) {
+    public Value get(Key key) {
         Node<Key, Value> current = root;
         while (current != null && !current.getKey().equals(key)) {
             if (current.getKey().compareTo(key) > 0) {
@@ -57,19 +57,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
         return current.getValue();
     }
 
-    public void remove(Key key) {
-        root = removeNode(root, key);
+    public void delete(Key key) {
+        root = deleteNode(root, key);
         size--;
     }
 
-    private Node<Key, Value> removeNode(Node<Key, Value> node, Key key) {
+    private Node<Key, Value> deleteNode(Node<Key, Value> node, Key key) {
         if (node == null)
             return null;
 
         if (key.compareTo(node.getKey()) < 0) {
-            node.setLeft(removeNode(node.getLeft(), key));
+            node.setLeft(deleteNode(node.getLeft(), key));
         } else if (key.compareTo(node.getKey()) > 0) {
-            node.setRight(removeNode(node.getRight(), key));
+            node.setRight(deleteNode(node.getRight(), key));
         } else {
             if (node.getLeft() == null)
                 return node.getRight();
@@ -79,7 +79,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Ite
             Node<Key, Value> minNode = findMinimum(node.getRight());
             node.setKey(minNode.getKey());
             node.setValue(minNode.getValue());
-            node.setRight(removeNode(node.getRight(), node.getKey()));
+            node.setRight(deleteNode(node.getRight(), node.getKey()));
         }
 
         return node;
