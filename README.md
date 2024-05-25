@@ -18,11 +18,28 @@ The `TestClass` class is a simple class used for testing the Hash Table. It prov
 The `TestClass` class overrides the `hashCode()` method to provide custom hashing based on the object's properties.
 
 
-# Binary Search Tree and Hash Table
+# Test Class: Book
 
-This repository contains implementations of a Binary Search Tree and a Hash Table in Java. The Binary Search Tree provides efficient methods for insertion, retrieval, and deletion of key-value pairs, while the Hash Table offers similar functionality with a different underlying data structure.
+The `Book` class represents a simple book object with properties such as title and author.
 
-## Binary Search Tree
+## Properties
+
+- `title`: Represents the title of the book.
+- `author`: Represents the author of the book.
+
+## Constructors
+
+- `Book(String title, String author)`: Initializes a new instance of the `Book` class with the specified title and author.
+
+## Methods
+
+- `getTitle()`: Returns the title of the book.
+- `setTitle(String title)`: Sets the title of the book.
+- `getAuthor()`: Returns the author of the book.
+- `setAuthor(String author)`: Sets the author of the book.
+
+
+# Binary Search Tree
 
 The `BinarySearchTree` class implements a generic Binary Search Tree data structure. It supports operations such as insertion, retrieval, and deletion of key-value pairs. Additionally, it provides an iterator for traversing the tree in ascending order of keys.
 
@@ -30,24 +47,13 @@ The `BinarySearchTree` class implements a generic Binary Search Tree data struct
 
 To use the Binary Search Tree, instantiate an object of the `BinarySearchTree` class and perform operations such as `put()`, `get()`, and `delete()`.
 
-Example:
-
-`BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
-
-
+```java
+BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
 bst.put(1, 'A');
-
-
 bst.put(2, 'B');
-
-
 bst.put(3, 'C');
-
-
 System.out.println(bst.get(2)); // Output: B
-
 bst.delete(2);
-`
 
 
 
