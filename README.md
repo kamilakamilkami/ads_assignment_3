@@ -32,8 +32,7 @@ To use the Binary Search Tree, instantiate an object of the `BinarySearchTree` c
 
 Example:
 
-`
-BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
+`BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
 
 
 bst.put(1, 'A');
@@ -46,7 +45,6 @@ bst.put(3, 'C');
 
 
 System.out.println(bst.get(2)); // Output: B
-
 
 bst.delete(2);
 `
