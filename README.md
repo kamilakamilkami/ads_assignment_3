@@ -14,12 +14,14 @@ To use the Binary Search Tree, instantiate an object of the `BinarySearchTree` c
 
 Example:
 
+## ```java
 BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
 bst.put(1, 'A');
 bst.put(2, 'B');
 bst.put(3, 'C');
 System.out.println(bst.get(2)); // Output: B
 bst.delete(2);
+
 
 # Hash Table
 
