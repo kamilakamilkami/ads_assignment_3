@@ -22,3 +22,40 @@ bst.put(3, 'C');
 System.out.println(bst.get(2)); // Output: B
 bst.delete(2);
 
+# Hash Table
+
+The `MyHashTable` class implements a generic Hash Table data structure. It handles collisions using separate chaining and automatically resizes itself to maintain a load factor below a specified threshold.
+
+## Usage
+
+To use the Hash Table, instantiate an object of the `MyHashTable` class and perform operations such as `insert()`, `retrieve()`, and `delete()`.
+
+### Example
+
+```java
+MyHashTable<TestClass, Book> hashTable = new MyHashTable<>();
+hashTable.insert(new TestClass("Key1"), new Book("Title1", "Author1"));
+hashTable.insert(new TestClass("Key2"), new Book("Title2", "Author2"));
+System.out.println(hashTable.retrieve(new TestClass("Key1"))); // Output: Book{title='Title1', author='Author1'}
+hashTable.delete(new TestClass("Key1"));
+
+# TestClass
+
+The `TestClass` class is a simple class used for testing the Hash Table. It provides custom implementations of `hashCode()` and `equals()` methods to define equality of objects.
+
+## Custom Hashing
+
+The `TestClass` class overrides the `hashCode()` method to provide custom hashing based on the object's properties.
+
+### Example
+
+```java
+public int hashCode() {
+    int hash = 0;
+    for (int i = 0; i < value.length(); i++) {
+        hash = 31 * hash + value.charAt(i);
+    }
+    return hash;
+}
+
+
