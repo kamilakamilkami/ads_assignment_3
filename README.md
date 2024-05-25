@@ -14,7 +14,6 @@ To use the Binary Search Tree, instantiate an object of the `BinarySearchTree` c
 
 Example:
 
-```java
 BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
 bst.put(1, 'A');
 bst.put(2, 'B');
@@ -38,24 +37,3 @@ hashTable.insert(new TestClass("Key1"), new Book("Title1", "Author1"));
 hashTable.insert(new TestClass("Key2"), new Book("Title2", "Author2"));
 System.out.println(hashTable.retrieve(new TestClass("Key1"))); // Output: Book{title='Title1', author='Author1'}
 hashTable.delete(new TestClass("Key1"));
-
-# TestClass
-
-The `TestClass` class is a simple class used for testing the Hash Table. It provides custom implementations of `hashCode()` and `equals()` methods to define equality of objects.
-
-## Custom Hashing
-
-The `TestClass` class overrides the `hashCode()` method to provide custom hashing based on the object's properties.
-
-### Example
-
-```java
-public int hashCode() {
-    int hash = 0;
-    for (int i = 0; i < value.length(); i++) {
-        hash = 31 * hash + value.charAt(i);
-    }
-    return hash;
-}
-
-
