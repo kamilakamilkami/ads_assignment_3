@@ -12,15 +12,14 @@ The `BinarySearchTree` class implements a generic Binary Search Tree data struct
 
 To use the Binary Search Tree, instantiate an object of the `BinarySearchTree` class and perform operations such as `put()`, `get()`, and `delete()`.
 
-Example:
+# Usage Example
 
-## ```java
-BinarySearchTree<Integer, Character> bst = new BinarySearchTree<>();
-bst.put(1, 'A');
-bst.put(2, 'B');
-bst.put(3, 'C');
-System.out.println(bst.get(2)); // Output: B
-bst.delete(2);
+MyHashTable<TestClass, Book> hashTable = new MyHashTable<>();
+hashTable.insert(new TestClass("Key1"), new Book("Title1", "Author1"));
+hashTable.insert(new TestClass("Key2"), new Book("Title2", "Author2"));
+System.out.println(hashTable.retrieve(new TestClass("Key1"))); // Output: Book{title='Title1', author='Author1'}
+hashTable.delete(new TestClass("Key1"));
+
 
 
 # Hash Table
